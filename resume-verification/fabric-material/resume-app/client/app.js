@@ -11,22 +11,6 @@ app.controller('appController', function($scope, appFactory){
 	$("#success_create").hide();
 	$("#error_holder").hide();
 	$("#error_query").hide();
-	
-	$scope.queryAllResumes = function(){
-
-		appFactory.queryAllResumes(function(data){
-			var array = [];
-			for (var i = 0; i < data.length; i++){
-				parseInt(data[i].Key);
-				data[i].Record.Key = parseInt(data[i].Key);
-				array.push(data[i].Record);
-			}
-			array.sort(function(a, b) {
-			    return parseFloat(a.Key) - parseFloat(b.Key);
-			});
-			$scope.all_resumes = array;
-		});
-	}
 
 	$scope.queryResume = function(){
 
@@ -59,13 +43,6 @@ app.factory('appFactory', function($http){
 	
 	var factory = {};
 
-    factory.queryAllResumes = function(callback){
-
-    	$http.get('/get_all_resumes/').success(function(output){
-			callback(output)
-		});
-	}
-
 	factory.queryResume = function(id, callback){
     	$http.get('/get_resume/'+id).success(function(output){
 			callback(output)
@@ -74,7 +51,7 @@ app.factory('appFactory', function($http){
 
 	factory.recordResume = function(data, callback){
 
-		var resume = data.id + "-" + data.resume + "-" + data.timestamp + "-" + data.resume_hash + "-" + data.user_id;
+		var resume = data.resume + "-" + data.user_id;
 
     	$http.get('/add_resume/'+resume).success(function(output){
 			callback(output)

@@ -69,30 +69,6 @@
 
     <div id="body">
       <div class="form-group">
-        <label>Query All Resumes</label>
-        <p><input id="queryAllResumes" type="submit" value="Query" class="btn btn-primary" ng-click="queryAllResumes()"></p>
-      </div>
- 
-      <table id="all_resumes" class="table" align="center">
-
-        <tr>
-          <th>Resume ID</th>
-          <th>User ID</th>
-          <th>Timestamp</th>
-          <th>Resume</th>
-          <th>Resume Hash</th>
-        </tr>
-
-        <tr ng-repeat="resume in all_resumes">
-          <td>{{resume.Key}}</td>
-          <td>{{resume.user_id}}</td>
-          <td>{{resume.timestamp}}</td>
-          <td>{{resume.resume}}</td>
-          <td>{{resume.resume_hash}}</td>
-        </tr>
-      </table>
-
-      <div class="form-group">
         <label>Query a Specific Resume</label><br>
         <h5 style="color:red;margin-bottom:2%" id="error_query">Error: Please enter a valid Resume ID</h5>
         
@@ -121,11 +97,8 @@
         <label>Create Resume Record</label>
         <h5 style="color:green;margin-bottom:2%" id="success_create">Success! Tx ID: {{create_resume}}</h5>
         <br>
-        Enter resume id: <input class="form-control" type="text" placeholder="Ex: 11" ng-model="resume.id">
         Enter user id: <input class="form-control" type="text" placeholder="Ex: 0239L" ng-model="resume.user_id">
         Enter resume: <input class="form-control" type="text" placeholder="Ex: 28.012" ng-model="resume.resume"> 
-        Enter timestamp: <input class="form-control" type="text" placeholder="Ex: 4982342301" ng-model="resume.timestamp">
-        Enter resume hash: <input class="form-control" type="text" placeholder="Ex: Hansel" ng-model="resume.resume_hash">
         <input id="createSubmit" type="submit" value="Create" class="btn btn-primary" ng-click="recordResume()"> 
       </div>
 
